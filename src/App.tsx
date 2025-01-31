@@ -9,11 +9,13 @@ import { Layout } from "./Layout";
 import dataProvider  from "./dataProvider";
 import { authProvider } from "./authProvider";
 import { AccountsList, AccountsCreate, AccountsEdit } from './userAcounts';
+import userProvider from "./data_providers/usersProvider"
+
 
 export const App = () => (
   <Admin
     layout={Layout}
-    dataProvider={dataProvider}
+    dataProvider={userProvider}
     authProvider={authProvider}
   >
     {/* <Resource
