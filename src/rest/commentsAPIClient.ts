@@ -1,26 +1,16 @@
 
 import axios from 'axios';
-const API_URL = 'http://127.0.0.1:3000/pages';
+const API_URL = 'http://127.0.0.1:3000/comments';
 
 
-export const pageClient = {
-
-    generatePage: async (id:string): Promise<any> =>{
-        const response = await axios.post<any>(`${API_URL}/generate`, {
-            id,
-        },{
-            headers: {
-            Authorization: 'Bearer ' + localStorage.getItem("token") 
-            }
-        });
-    },
+export const commentsClient = {
     
 
-    create: async (title: string, endpoint: string, pageTemplate: string): Promise<any> => {
+    create: async (name: string, comment: string, pageId: string): Promise<any> => {
         const response = await axios.post<any>(`${API_URL}/create`, {
-            title,
-            endpoint,
-            pageTemplate,
+            name,
+            comment,
+            pageId,
         },{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
@@ -31,7 +21,7 @@ export const pageClient = {
     },
 
     
-    getPages: async (): Promise<any> => {
+    getComments: async (): Promise<any> => {
         const response = await axios.get<any>(`${API_URL}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("token") 
@@ -40,7 +30,7 @@ export const pageClient = {
         return response
      
     },
-    getPage: async (id: string): Promise<any> => {
+    getComment: async (id: string): Promise<any> => {
         const response = await axios.get<any>(`${API_URL}/${id}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("token") 

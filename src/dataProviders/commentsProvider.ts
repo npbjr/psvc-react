@@ -20,11 +20,11 @@ import {
     UpdateParams,
     UpdateResult,
 } from 'react-admin';
-import { userClient } from '../rest/usersAPIClient';
+import { commentsClient } from '../rest/commentsAPIClient';
 
-const dataProvider: DataProvider = {
+const CommentsProvider: DataProvider = {
     getList: async (resource: string, params) => {
-        const response = await userClient.getUsers(); // Adjust based on resource
+        const response = await commentsClient.getComments(); // Adjust based on resource
         const formatted = response.data.map((data: any) => ({
             id: data._id,
             ...data,
@@ -36,12 +36,13 @@ const dataProvider: DataProvider = {
     },
 
     getOne: async (resource: string, params: GetOneParams) => {
-        const response = await userClient.getUser(params.id);
-        const formatted = {
-            id: response.data._id,
-            ...response.data,
-        };
-        return { data: formatted };
+        const response = await commentsClient.getComment(params.id);
+        // const formatted = {
+        //     id: response.data._id,
+        //     ...response.data,
+        // };
+        // return { data: formatted };
+        return {data:response}
     },
 
     getMany: async <RecordType extends RaRecord = any>(resource: string, params: GetManyParams<RecordType>): Promise<GetManyResult<RecordType>> => {
@@ -53,7 +54,7 @@ const dataProvider: DataProvider = {
     },
 
     update: async (resource: string, params: UpdateParams) => {
-        const response = await userClient.update(params.id, params.data.username, params.data.password, params.data.role);
+        const response = await commentsClient.update(params.id, params.data.username, params.data.password, params.data.role);
         const formatted = {
             id: response.data._id,
             ...response.data,
@@ -66,16 +67,16 @@ const dataProvider: DataProvider = {
     },
 
     create: async (resource: string, params: CreateParams) => {
-        const response = await userClient.register(params.data.username, params.data.password, params.data.role);
+        const response = await commentsClient.create(params.data.name, params.data.comment, params.data.pageId);
         const formatted = {
-            id: response.data._id,
+            id: response.data.id,
             ...response.data,
         };
         return { data: formatted };
     },
 
     delete: async (resource: string, params: DeleteParams) => {
-        const response = await userClient.delete(params.previousData.id);
+        const response = await commentsClient.delete(params.previousData.id);
         return { data: response };
     },
 
@@ -84,4 +85,4 @@ const dataProvider: DataProvider = {
     },
 };
 
-export default dataProvider;
+export default CommentsProvider;

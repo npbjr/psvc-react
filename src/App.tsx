@@ -6,16 +6,16 @@ import {
   ShowGuesser,
 } from "react-admin";
 import { Layout } from "./Layout";
-import dataProvider  from "./dataProvider";
 import { authProvider } from "./authProvider";
-import { AccountsList, AccountsCreate, AccountsEdit } from './userAcounts';
-import userProvider from "./data_providers/usersProvider"
-
+import { AccountsList, AccountsCreate, AccountsEdit } from './components/users';
+import { CommentsCreate, CommentsEdit, CommentsList } from "./components/comments";
+import { PagesList, PagesCreate, PagesEdit } from "./components/pages";
+import {dataProvider} from './dataProviders/allProviders'
 
 export const App = () => (
   <Admin
     layout={Layout}
-    dataProvider={userProvider}
+    dataProvider={dataProvider}
     authProvider={authProvider}
   >
     {/* <Resource
@@ -31,11 +31,24 @@ export const App = () => (
       show={ShowGuesser}
     />
    */}
-    <Resource
+    <Resource 
           name="accounts" 
           list={AccountsList}
           create={AccountsCreate}
           edit={AccountsEdit}
       />
+      <Resource 
+        name="comments" 
+        list={CommentsList}
+        create={CommentsCreate}
+        edit={CommentsEdit}
+      />
+    <Resource 
+      name="pages" 
+      list={PagesList}
+      create={PagesCreate}
+      edit={PagesEdit}
+    />
+    
   </Admin>
 );
