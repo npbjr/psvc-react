@@ -1,4 +1,4 @@
-// Pages.js
+
 import React from 'react';
 import {
     List,
@@ -62,23 +62,22 @@ export const PagesShow = () => (
 );
 
 import { useState } from 'react';
-import { Button, Loading } from 'react-admin'; // Import necessary components
-import axios from 'axios';
+import { Button, Loading } from 'react-admin'; 
 import { pageClient } from '../rest/pagesAPIClient';
 
 const GeneratePageButton: React.FC = () => {
-    const [loading, setLoading] = useState<boolean>(false); // Explicitly define the state type
+    const [loading, setLoading] = useState<boolean>(false); 
 
     const handleGeneratePage = async () => {
-        setLoading(true); // Set loading to true
+        setLoading(true); 
         
         try {
-            const response = await pageClient.generatePage("1") // Call your NestJS API
-            console.log(response.data); // Handle the response as needed
+            const response = await pageClient.generatePage("1") 
+            console.log(response.data); 
         } catch (error) {
             console.error('Error generating page:', error);
         } finally {
-            setLoading(false); // Reset loading state
+            setLoading(false);
         }
     };
 

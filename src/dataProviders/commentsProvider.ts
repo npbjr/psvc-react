@@ -37,11 +37,11 @@ const CommentsProvider: DataProvider = {
 
     getOne: async (resource: string, params: GetOneParams) => {
         const response = await commentsClient.getComment(params.id);
-        // const formatted = {
-        //     id: response.data._id,
-        //     ...response.data,
-        // };
-        // return { data: formatted };
+        const formatted = {
+            id: response.data._id,
+            ...response.data,
+        };
+        return { data: formatted };
         return {data:response}
     },
 

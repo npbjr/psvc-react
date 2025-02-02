@@ -11,9 +11,13 @@ import { AccountsList, AccountsCreate, AccountsEdit } from './components/users';
 import { CommentsCreate, CommentsEdit, CommentsList } from "./components/comments";
 import { PagesList, PagesCreate, PagesEdit } from "./components/pages";
 import {dataProvider} from './dataProviders/allProviders'
-
+import CommentIcon from '@mui/icons-material/Comment';
+import UserIcon from '@mui/icons-material/People';
+import ArticleIcon from '@mui/icons-material/Article'
+import dashboard from "./components/dashboard";
 export const App = () => (
   <Admin
+    dashboard={dashboard}
     layout={Layout}
     dataProvider={dataProvider}
     authProvider={authProvider}
@@ -32,18 +36,21 @@ export const App = () => (
     />
    */}
     <Resource 
+    icon={UserIcon}
           name="accounts" 
           list={AccountsList}
           create={AccountsCreate}
           edit={AccountsEdit}
       />
       <Resource 
+      icon={CommentIcon}
         name="comments" 
         list={CommentsList}
         create={CommentsCreate}
         edit={CommentsEdit}
       />
     <Resource 
+    icon={ArticleIcon}
       name="pages" 
       list={PagesList}
       create={PagesCreate}

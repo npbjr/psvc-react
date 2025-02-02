@@ -16,7 +16,7 @@
     "@grpc/grpc-js": "^1.12.5",
     "@grpc/proto-loader": "^0.7.13",
     "@mui/icons-material": "^6.4.0",
-    "@mui/material": "^6.4.0",
+    "@mui/material": "^6.4.2",
     "axios": "^1.7.9",
     "google-protobuf": "^3.21.4",
     "ra-data-fakerest": "^5.5.0",
