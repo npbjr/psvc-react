@@ -13,11 +13,8 @@ export const userClient = {
         return response.data;
     },
 
-    register: async (email: string, password: string, role: string): Promise<any> => {
-        const response = await axios.post<any>(`${API_URL}/register`, {
-            role,
-            email,
-            password,
+    register: async (userData:any): Promise<any> => {
+        const response = await axios.post<any>(`${API_URL}/register`, {...userData
         },{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
@@ -54,12 +51,8 @@ export const userClient = {
         });
         return response;
     },
-    update: async (id:string, email: string, password: string, role: string): Promise<any> => {
-        const response = await axios.patch<any>(`${API_URL}/users/${id}`, {
-            role,
-            email,
-            password,
-        },{
+    update: async (userData:any): Promise<any> => {
+        const response = await axios.patch<any>(`${API_URL}/users/${userData.id}`, {...userData},{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
             }

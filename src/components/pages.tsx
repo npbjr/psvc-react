@@ -13,9 +13,16 @@ import {
     SimpleShowLayout,
     useNotify,
     useRefresh,
-    useRedirect
+    useRedirect,
+    DateTimeInput,
+    SelectInput
 } from 'react-admin';
 
+
+const pageDataTemplte = [
+    { id: 'lotto-v1', name: 'Lotto data V1' },
+    { id: 'lotto-v2', name: 'Lotto data V2' },
+];
 export const PagesList = () => (
     <List>
         <Datagrid>
@@ -23,6 +30,8 @@ export const PagesList = () => (
             <TextField source="title" />
             <TextField source="endpoint" />
             <TextField source="pageTemplate" />
+            <TextField source="dateCreated" />
+            <TextField source="dateModified" />
             <GeneratePageButton />
             <EditButton />
         </Datagrid>
@@ -35,7 +44,7 @@ export const PagesCreate = () => (
         <SimpleForm>
             <TextInput source="title" />
             <TextInput source="endpoint" />
-            <TextInput source="pageTemplate" />
+            <SelectInput source="pageTemplate" choices={pageDataTemplte} />
         </SimpleForm>
     </Create>
 );
@@ -46,6 +55,8 @@ export const PagesEdit = () => (
             <TextInput source="title" />
             <TextInput source="endpoint" />
             <TextInput source="pageTemplate" />
+            <DateTimeInput source="dateCreated" />
+            <DateTimeInput source="dateModified" />
         </SimpleForm>
     </Edit>
 );

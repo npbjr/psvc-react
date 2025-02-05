@@ -12,20 +12,30 @@ import {
     SelectInput,
     Toolbar,
     SaveButton,
-    Edit
+    Edit,
+    DateField,
+    DateTimeInput,
+    ImageInput
 } from 'react-admin';
 const roles = [
     { id: 'admin', name: 'Admin' },
     { id: 'user', name: 'User' },
 ];
 
+const accountStatus = [
+    {id: 'active', name: 'Active'},
+    {id: 'suspended', name:'Suspended'}
+]
+
 export const AccountsList: React.FC = (props:any) => (
     <List {...props}>
          <Datagrid>
              <TextField source="id" />
-             <TextField source="username" />
              <EmailField source="email" />
              <TextField source="role" />
+             <TextField source="accountStatus" />
+             <TextField source="dateCreated" />
+             <TextField source="dateModified" />
              <EditButton />
             <DeleteButton />
         </Datagrid>
@@ -35,10 +45,12 @@ export const AccountsList: React.FC = (props:any) => (
 export const AccountsCreate = (props:any) => (
     <Create {...props}>
         <SimpleForm>
-            <TextInput source="username" defaultValue=" " />
-            <EmailField source="email" defaultValue=" " />
+            {/* <TextInput source="username" type="username" defaultValue="" /> */}
+            <TextInput source="email" defaultValue=" " />
             <TextInput source="password" type="password" defaultValue="" />
             <SelectInput source="role" choices={roles} />
+            <SelectInput source="accountStatus" choices={accountStatus} />
+            
         </SimpleForm>
     </Create>
 );
@@ -46,10 +58,12 @@ export const AccountsCreate = (props:any) => (
 export const AccountsEdit = (props:any) => (
     <Edit {...props}>
         <SimpleForm>
-            <TextInput source="username" defaultValue=" " />
-            <EmailField source="email" defaultValue=" " />
+            <TextInput source="email" defaultValue=" " />
             <TextInput source="password" type="password" defaultValue="" />
             <SelectInput source="role" choices={roles} />
+            <SelectInput source="accountStatus" choices={accountStatus} />
+            <DateTimeInput source="dateCreated" />
+            <DateTimeInput source="dateModified" />
         </SimpleForm>
     </Edit>
 );

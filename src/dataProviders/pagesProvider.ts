@@ -54,7 +54,8 @@ const PagesProvider: DataProvider = {
     },
 
     update: async (resource: string, params: UpdateParams) => {
-        const response = await pageClient.update(params.id, params.data.username, params.data.password, params.data.role);
+        const data = params.data
+        const response = await pageClient.update(data)
         const formatted = {
             id: response.data._id,
             ...response.data,
@@ -67,7 +68,8 @@ const PagesProvider: DataProvider = {
     },
 
     create: async (resource: string, params: CreateParams) => {
-        const response = await pageClient.create(params.data.title, params.data.endpoint, params.data.pageTemplate);
+        const data = params.data
+        const response = await pageClient.create(data)
         const formatted = {
             id: response.data._id,
             ...response.data,

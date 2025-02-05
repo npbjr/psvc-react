@@ -16,12 +16,8 @@ export const pageClient = {
     },
     
 
-    create: async (title: string, endpoint: string, pageTemplate: string): Promise<any> => {
-        const response = await axios.post<any>(`${API_URL}/create`, {
-            title,
-            endpoint,
-            pageTemplate,
-        },{
+    create: async (pageData:any): Promise<any> => {
+        const response = await axios.post<any>(`${API_URL}/create`, {...pageData},{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
             }
@@ -57,12 +53,8 @@ export const pageClient = {
         });
         return response;
     },
-    update: async (id:string, email: string, password: string, role: string): Promise<any> => {
-        const response = await axios.patch<any>(`${API_URL}/${id}`, {
-            role,
-            email,
-            password,
-        },{
+    update: async (pageData:any): Promise<any> => {
+        const response = await axios.patch<any>(`${API_URL}/${pageData.id}`, {...pageData},{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
             }

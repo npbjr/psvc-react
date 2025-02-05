@@ -23,6 +23,8 @@ export const CommentsList = () => (
             <TextField source="name" />
             <TextField source="comment" />
             <TextField source="pageId" />
+            <TextField source="dateCreated" />
+            <TextField source="dateModified" />
             <EditButton />
         </Datagrid>
     </List>

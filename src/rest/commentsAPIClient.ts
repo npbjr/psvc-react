@@ -6,12 +6,8 @@ const API_URL = 'http://127.0.0.1:3000/comments';
 export const commentsClient = {
     
 
-    create: async (name: string, comment: string, pageId: string): Promise<any> => {
-        const response = await axios.post<any>(`${API_URL}/create`, {
-            name,
-            comment,
-            pageId,
-        },{
+    create: async (commentsData:any): Promise<any> => {
+        const response = await axios.post<any>(`${API_URL}/create`, {...commentsData},{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
             }
@@ -47,12 +43,8 @@ export const commentsClient = {
         });
         return response;
     },
-    update: async (id:string, email: string, password: string, role: string): Promise<any> => {
-        const response = await axios.patch<any>(`${API_URL}/${id}`, {
-            role,
-            email,
-            password,
-        },{
+    update: async (commentsData:any): Promise<any> => {
+        const response = await axios.patch<any>(`${API_URL}/${commentsData.id}`, {...commentsData},{
             headers: {
             Authorization: 'Bearer ' + localStorage.getItem("token") 
             }

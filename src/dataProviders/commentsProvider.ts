@@ -54,7 +54,8 @@ const CommentsProvider: DataProvider = {
     },
 
     update: async (resource: string, params: UpdateParams) => {
-        const response = await commentsClient.update(params.id, params.data.username, params.data.password, params.data.role);
+        const data = params.data
+        const response = await commentsClient.update(data)
         const formatted = {
             id: response.data._id,
             ...response.data,
@@ -67,7 +68,8 @@ const CommentsProvider: DataProvider = {
     },
 
     create: async (resource: string, params: CreateParams) => {
-        const response = await commentsClient.create(params.data.name, params.data.comment, params.data.pageId);
+        const data = params.data
+        const response = await commentsClient.create(data)
         const formatted = {
             id: response.data.id,
             ...response.data,

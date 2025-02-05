@@ -53,7 +53,8 @@ const UsersProvider: DataProvider = {
     },
 
     update: async (resource: string, params: UpdateParams) => {
-        const response = await userClient.update(params.id, params.data.username, params.data.password, params.data.role);
+        const data = params.data
+        const response = await userClient.update(data);
         const formatted = {
             id: response.data._id,
             ...response.data,
@@ -66,7 +67,8 @@ const UsersProvider: DataProvider = {
     },
 
     create: async (resource: string, params: CreateParams) => {
-        const response = await userClient.register(params.data.username, params.data.password, params.data.role);
+        const data = params.data
+        const response = await userClient.register(data);
         console.log("RESPONSE", response)
         if(response.data.statusCode == 409){
             return Promise.reject("User Existed")
