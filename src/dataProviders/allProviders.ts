@@ -1,6 +1,7 @@
 import usersProvider from './usersProvider';
 import PagesProvider from './pagesProvider';
 import CommentsProvider from './commentsProvider';
+import LottoResultProvider from './lottoProvider';
 import { defaultDataProvider } from 'react-admin';
 
 export const dataProvider = new Proxy(defaultDataProvider, {
@@ -17,6 +18,9 @@ export const dataProvider = new Proxy(defaultDataProvider, {
             }
             if (resource.startsWith('pages')) {
                 return PagesProvider[name](resource.substring(5), params);
+            }
+            if (resource.startsWith('lotto')) {
+                return LottoResultProvider[name](resource.substring(5), params);
             }
             
         }

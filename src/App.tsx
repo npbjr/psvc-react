@@ -14,7 +14,9 @@ import { dataProvider } from './dataProviders/allProviders';
 import CommentIcon from '@mui/icons-material/Comment';
 import UserIcon from '@mui/icons-material/People';
 import ArticleIcon from '@mui/icons-material/Article';
+import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 import { themes, ThemeName } from './themes/themes';
+import { LottoResultList } from "./components/lotto";
 const store = localStorageStore(undefined, 'ECommerce');
 
 const App = () => {
@@ -52,6 +54,12 @@ const App = () => {
         list={PagesList}
         create={PagesCreate}
         edit={PagesEdit}
+      />
+      <Resource 
+        
+        icon={ThreeDRotation}
+        name="lotto" 
+        list={LottoResultList}
       />
     </Admin>
   );
