@@ -19,9 +19,12 @@ export const dataProvider = new Proxy(defaultDataProvider, {
             if (resource.startsWith('pages')) {
                 return PagesProvider[name](resource.substring(5), params);
             }
-            if (resource.startsWith('lotto')) {
+            if (resource.startsWith('Lotto Result')) {
                 return LottoResultProvider[name](resource.substring(5), params);
             }
+            // if (resource.startsWith('aiassistant')) {
+            //     return LottoResultProvider[name](resource.substring(5), params);
+            // }
             
         }
     },

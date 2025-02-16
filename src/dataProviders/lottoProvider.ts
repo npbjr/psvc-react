@@ -24,7 +24,10 @@ import { commentsClient } from '../rest/lottoAPIClient';
 
 const LottoResultProvider: DataProvider = {
     getList: async (resource: string, params) => {
-        const response = await commentsClient.getComments(); // Adjust based on resource
+        console.log(params)
+        const searchText = params.filter.q
+        console.log(searchText)
+        const response = await commentsClient.findAll(searchText); // Adjust based on resource
         const formatted = response.data.map((data: any) => ({
             id: data._id,
             ...data,
@@ -36,7 +39,7 @@ const LottoResultProvider: DataProvider = {
     },
 
     getOne: async (resource: string, params: GetOneParams) => {
-        const response = await commentsClient.getComment(params.id);
+        const response = await commentsClient.findById(params.id);
         const formatted = {
             id: response.data._id,
             ...response.data,

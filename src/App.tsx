@@ -4,6 +4,8 @@ import {
   localStorageStore,
   useStore,
   StoreContextProvider,
+  CustomRoutes,
+  SearchInput,
 } from "react-admin";
 import { Layout } from "./Layout";
 import { authProvider } from "./authProvider";
@@ -16,9 +18,11 @@ import UserIcon from '@mui/icons-material/People';
 import ArticleIcon from '@mui/icons-material/Article';
 import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 import { themes, ThemeName } from './themes/themes';
-import { LottoResultList } from "./components/lotto";
-const store = localStorageStore(undefined, 'ECommerce');
+import { LottoAISearch, LottoResultList } from "./components/lotto";
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import {  CustomResource } from "./components/aisearch";
 
+const store = localStorageStore(undefined, 'ECommerce');
 const App = () => {
   const [themeName] = useStore<ThemeName>('themeName', 'soft');
   const currentTheme = themes.find(theme => theme.name === themeName);
@@ -58,9 +62,19 @@ const App = () => {
       <Resource 
         
         icon={ThreeDRotation}
-        name="lotto" 
+        name="Lotto Result" 
         list={LottoResultList}
       />
+
+
+
+      <CustomResource 
+        icon={AutoAwesomeIcon}
+        name="AI Lotto Searche"
+        list={LottoAISearch}
+      />
+      
+     
     </Admin>
   );
 };

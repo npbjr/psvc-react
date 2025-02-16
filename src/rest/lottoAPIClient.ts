@@ -17,8 +17,14 @@ export const commentsClient = {
     },
 
     
-    getComments: async (): Promise<any> => {
+    findAll: async (searchText:string): Promise<any> => {
+     
+        const params = {
+            searchText
+        };   
+
         const response = await axios.get<any>(`${API_URL}/result`, {
+           params ,
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("token") 
               }
@@ -26,14 +32,21 @@ export const commentsClient = {
         return response
      
     },
-    getComment: async (id: string): Promise<any> => {
+    findById: async (id: string): Promise<any> => {
         const response = await axios.get<any>(`${API_URL}/${id}`, {
             headers: {
                 Authorization: 'Bearer ' + localStorage.getItem("token") 
               }
         });
         return response
-     
+    },
+    searchBy: async (searchText: string): Promise<any> => {
+        const response = await axios.get<any>(`${API_URL}/result/search`, {
+            headers: {
+                Authorization: 'Bearer ' + localStorage.getItem("token") 
+              }
+        });
+        return response
     },
     delete: async (id: string): Promise<any> => {
         const response = await axios.delete(`${API_URL}/${id}`, {
